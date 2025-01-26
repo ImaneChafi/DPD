@@ -3,20 +3,22 @@
 > 
 By Imane Chafi
 
-Our labs have provided a list of public dataset (78 cases) of dies and margin lines you can use in this paper and other papers, please make sure to cite our lab when using our data: 
-[Public Dataset Intellident](https://github.com/intellident-ai/public-datasets)
+
 
 ## Software Implementation 
 This code builds onto code from the [SP-GAN]([https://liruihui.github.io/publication/SP-GAN/) paper by Li et al. 
 
-Due to privacy laws concerning dentistry shape material, we cannot share the original data here. Please email imane.chafi@polymtl.ca for data. 
+Our labs have provided a list of public dataset (78 cases) of dies and margin lines you can use in this paper and other papers, please make sure to cite our lab when using our data: 
+[Public Dataset Intellident](https://github.com/intellident-ai/public-datasets)
+
+This dataset above is a small part of the dataset used to train our model. Due to privacy laws concerning dentistry shape material, we cannot share the original data here. Please email imane.chafi@polymtl.ca for data. 
 
 ## Installation
 
-You can download the code from this github page for the geometric method. Refer [here](https://github.com/intellident-ai/DPD.git) to 
+You can download the code from this github page. Refer [here](https://github.com/ImaneChafi/DPD.git) to 
 
 ```
-git clone https://github.com/intellident-ai/DPD.git
+git clone [https://github.com/intellident-ai/DPD.git](https://github.com/ImaneChafi/DPD.git)
 ```
 
 ## Training
