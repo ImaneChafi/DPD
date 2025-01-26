@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point Cloud Visualization</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #container { width: 100%; height: 600px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; text-align: left; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Point Cloud Visualization</h1>
+    <div id="container"></div>
+    <h2>Metrics</h2>
+    <table id="metricsTable">
+        <thead>
+            <tr>
+                <th>Sample</th>
+                <th>Chamfer</th>
+                <th>Hausdorff</th>
+                <th>RMS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Metrics will be populated here -->
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Load the metrics JSON
+        fetch('metrics.json')
+            .then(response => response.json())
+            .then(metrics => {
+                const tbody = document.querySelector('#metricsTable tbody');
+                for (const [sample, data] of Object.entries(metrics)) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${sample}</td>
+                        <td>${data.Chamfer.toFixed(3)}</td>
+                        <td>${data.Hausdorff.toFixed(3)}</td>
+                        <td>${data.RMS.toFixed(3)}</td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            });
+
+        // Visualization code using Three.js
+        const container = document.getElementById('container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        const loadPointCloud = (url, color) => {
+            const loader = new THREE.PLYLoader();
+            loader.load(url, geometry => {
+                const material = new THREE.PointsMaterial({ size: 0.01, color: color });
+                const points = new THREE.Points(geometry, material);
+                scene.add(points);
+            });
+        };
+
+        loadPointCloud('path/to/reference.ply', 0xff0000);  // Red color for reference
+        for (let i = 0; i < 5; i++) {
+            loadPointCloud(`path/to/sample${i}.ply`, 0x0000ff);  // Blue color for samples
+        }
+
+        camera.position.z = 5;
+        const animate = () => {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        };
+        animate();
+    </script>
+</body>
+</html>

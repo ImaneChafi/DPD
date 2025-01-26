@@ -1,0 +1,40 @@
+import numpy as np
+import open3d as o3d
+from scipy.spatial.distance import cdist
+
+def chamfer_distance(pcd1, pcd2):
+    dists1 = cdist(pcd1, pcd2, metric='euclidean')
+    dists2 = cdist(pcd2, pcd1, metric='euclidean')
+    return np.mean(np.min(dists1, axis=1)) + np.mean(np.min(dists2, axis=1))
+
+def hausdorff_distance(pcd1, pcd2):
+    dists1 = cdist(pcd1, pcd2, metric='euclidean')
+    dists2 = cdist(pcd2, pcd1, metric='euclidean')
+    return max(np.max(np.min(dists1, axis=1)), np.max(np.min(dists2, axis=1)))
+
+def rms_distance(pcd1, pcd2):
+    dists = cdist(pcd1, pcd2, metric='euclidean')
+    return np.sqrt(np.mean(dists ** 2))
+
+reference = o3d.io.read_point_cloud('path/to/reference.ply')
+reference_points = np.asarray(reference.points)
+
+metrics = {}
+
+for i in range(5):
+    sample = o3d.io.read_point_cloud(f'path/to/sample{i}.ply')
+    sample_points = np.asarray(sample.points)
+    
+    chamfer = chamfer_distance(reference_points, sample_points)
+    hausdorff = hausdorff_distance(reference_points, sample_points)
+    rms = rms_distance(reference_points, sample_points)
+    
+    metrics[f'sample{i}'] = {
+        'Chamfer': chamfer,
+        'Hausdorff': hausdorff,
+        'RMS': rms
+    }
+
+import json
+with open('metrics.json', 'w') as f:
+    json.dump(metrics, f)
