@@ -26,7 +26,7 @@ The code is separated into two: Training and visualization
 
 The file `train.py` has all the important information for training the code, as well as a log file setup to have a log for every training.
 
-This is an unsupervised method, and doesn't need ground truth. We use COV-CD and MMD-CD from [latent 3D points](https://github.com/optas/latent_3d_points.git) to evaluate the output. 
+This is an unsupervised method, and doesn't need ground truth. We follow the same evaluation method as SP-GAN, and added the hausdorff measure. COV-CD and MMD-CD from [latent 3D points](https://github.com/optas/latent_3d_points.git) is used to evaluate the output. 
 
 To train on your own data, you need to make an h5 file of point clouds. These point clouds can have a certain number of points. 
 
