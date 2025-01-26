@@ -6,7 +6,7 @@ By Imane Chafi
 
 
 ## Software Implementation 
-This code builds onto code from the [SP GAN]([https://liruihui.github.io/publication/SP-GAN/) paper by Li et al. 
+This code builds onto code from the [SP GAN](https://liruihui.github.io/publication/SP-GAN/) paper by Li et al. 
 
 Our labs have provided a list of public dataset (78 cases) of dies and margin lines you can use in this paper and other papers, please make sure to cite our lab when using our data: 
 [Public Dataset Intellident](https://github.com/intellident-ai/public-datasets)
