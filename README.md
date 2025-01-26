@@ -78,7 +78,7 @@ On a python environment, you can run the file found in `scripts/thickness_intera
 `python3 thickness_interactive.py`
 and the application should show up on http://127.0.0.1:8050/
 
-## Thickness Analysis Script
+## Undercut Evaluation Script
 On a python environment, you can run the file found in `scripts/undercut_evaluation.py` with
 `python3 undercut_evaluation.py`
 and the application should show up on http://127.0.0.1:8050/
