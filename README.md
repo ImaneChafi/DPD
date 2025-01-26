@@ -18,7 +18,7 @@ This dataset above is a small part of the dataset used to train our model. Due t
 You can download the code from this github page. Refer [here](https://github.com/ImaneChafi/DPD.git) to 
 
 ```
-git clone [https://github.com/intellident-ai/DPD.git](https://github.com/ImaneChafi/DPD.git)
+git clone https://github.com/ImaneChafi/DPD.git
 ```
 
 ## Training
